@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:userprofile/gen/assets.gen.dart';
 
 class SkillInstance extends StatefulWidget {
   final String title;

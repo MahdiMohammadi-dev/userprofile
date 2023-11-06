@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:userprofile/config/app_strings.dart';
 import 'package:userprofile/config/dimens.dart';
 import 'package:userprofile/config/extensions.dart';
-import 'package:userprofile/gen/assets.gen.dart';
 import 'package:userprofile/widgets/skill_instance.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -13,7 +12,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("User Info"),
+        title: Text(AppLocalizations.of(context)!.appbartitle),
         actions: [
           const Icon(CupertinoIcons.chat_bubble),
           Dimens.small.sizedBoxWidth,
@@ -33,7 +32,8 @@ class MainScreen extends StatelessWidget {
                   ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.asset(
-                        Assets.images.me.path,
+                        'assets/images/me.jpg',
+                        // Assets.images.me.path,
                         width: 70,
                         height: 70,
                       )),
@@ -42,25 +42,25 @@ class MainScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          AppStirngs.name,
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.name,
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Dimens.small.sizedBoxHeight,
-                        const Text(
-                          AppStirngs.job,
-                          style: TextStyle(
+                        Text(
+                          AppLocalizations.of(context)!.job,
+                          style: const TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w400),
                         ),
                         Dimens.small.sizedBoxHeight,
-                        const Row(
+                        Row(
                           children: [
-                            Icon(
+                            const Icon(
                               CupertinoIcons.location_solid,
                             ),
                             // Dimens.small.sizedBoxWidth,
-                            Text(AppStirngs.cityCountry)
+                            Text(AppLocalizations.of(context)!.cityCountry)
                           ],
                         )
                       ],
@@ -71,11 +71,11 @@ class MainScreen extends StatelessWidget {
             ),
 
             ///TODO:Descrription
-            const Padding(
-              padding: EdgeInsets.fromLTRB(32, 0, 32, 16),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 16),
               child: Text(
-                AppStirngs.description,
-                style: TextStyle(
+                AppLocalizations.of(context)!.description,
+                style: const TextStyle(
                   fontSize: 18,
                   height: 1.5,
                   fontWeight: FontWeight.w400,
@@ -85,16 +85,17 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             const Divider(),
-            const Padding(
-              padding: EdgeInsets.only(left: 32, top: 5),
+            Padding(
+              padding: const EdgeInsets.only(left: 32, top: 5),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Skills",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    AppLocalizations.of(context)!.skill,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Icon(
+                  const Icon(
                     CupertinoIcons.chevron_down,
                     size: 12,
                   )
@@ -113,32 +114,32 @@ class MainScreen extends StatelessWidget {
                         title: 'Android Studio',
                         shadow: Colors.green,
                         isActive: false,
-                        imgpath: Assets.images.as.path),
+                        imgpath: 'assets/images/as.png'),
                     SkillInstance(
                         title: 'Vs Code',
-                        imgpath: Assets.images.vs.path,
+                        imgpath: 'assets/images/vs.png',
                         isActive: false,
                         shadow: Colors.blue),
                     SkillInstance(
                         isActive: false,
                         shadow: Colors.pink,
                         title: 'Figma',
-                        imgpath: Assets.images.figma.path),
+                        imgpath: 'assets/images/figma.png'),
                     SkillInstance(
                         isActive: false,
                         shadow: Colors.purpleAccent,
                         title: 'Git',
-                        imgpath: Assets.images.git.path),
+                        imgpath: 'assets/images/git.png'),
                     SkillInstance(
                         isActive: false,
                         shadow: Colors.purple,
                         title: 'Adobe Xd',
-                        imgpath: Assets.images.xd.path),
+                        imgpath: 'assets/images/xd.png'),
                     SkillInstance(
                         isActive: false,
                         shadow: Colors.blueAccent,
                         title: 'PhotoShop',
-                        imgpath: Assets.images.ps.path),
+                        imgpath: 'assets/images/ps.png'),
                   ],
                 ),
               ),
@@ -151,32 +152,33 @@ class MainScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    AppStirngs.personalInfo,
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  Text(
+                    AppLocalizations.of(context)!.personalInfo,
+                    style: const TextStyle(
+                        fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                   Dimens.medium.sizedBoxHeight,
-                  const TextField(
+                  TextField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white10,
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
-                      hintText: AppStirngs.email,
-                      prefixIcon: Icon(CupertinoIcons.at),
+                      hintText: AppLocalizations.of(context)!.email,
+                      prefixIcon: const Icon(CupertinoIcons.at),
                     ),
                   ),
                   Dimens.medium.sizedBoxHeight,
-                  const TextField(
+                  TextField(
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       filled: true,
                       fillColor: Colors.white10,
-                      hintText: AppStirngs.password,
-                      prefixIcon: Icon(CupertinoIcons.lock),
+                      hintText: AppLocalizations.of(context)!.password,
+                      prefixIcon: const Icon(CupertinoIcons.lock),
                     ),
                   ),
                   Dimens.medium.sizedBoxHeight,
@@ -192,12 +194,12 @@ class MainScreen extends StatelessWidget {
                         ),
                         onPressed: () {},
                         child: Text(
-                          AppStirngs.save,
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.save,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

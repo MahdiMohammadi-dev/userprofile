@@ -1,0 +1,12 @@
+{
+  "appbartitle": "User Info",
+  "name": "Mahdi Mohammadi",
+  "job": "Junior Flutter Developer",
+  "cityCountry": "Iran, Tehran",
+  "description":  "👋 Hi, I'm Mahdi Mohammadi,\nI am interested in Dart language and Flutter framework,I am currently learning Flutter,I fight and strive for my goals and I have the madness of learning",
+  "skill":"Skills",
+  "email":"Email",
+  "password":"password",
+  "personalInfo":"Personal Information",
+  "save":"Save"
+}
