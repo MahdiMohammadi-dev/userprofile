@@ -2,17 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:userprofile/config/dimens.dart';
 import 'package:userprofile/config/extensions.dart';
+import 'package:userprofile/main.dart';
 import 'package:userprofile/widgets/skill_instance.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+enum Language {
+  en,
+  fa,
+}
+
+class MainScreen extends StatefulWidget {
+  final Function(Language _language) selectedLanguageChange;
+  const MainScreen({super.key, required this.selectedLanguageChange});
 
   @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  Language _language = Language.en;
+  @override
   Widget build(BuildContext context) {
+    var texttheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.appbartitle),
+        title: Text(AppLocalizations.of(context)!.appbartitle,
+            style: texttheme.bodyLarge!.copyWith(fontSize: 20)),
         actions: [
           const Icon(CupertinoIcons.chat_bubble),
           Dimens.small.sizedBoxWidth,
@@ -81,10 +96,30 @@ class MainScreen extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.justify,
-                textDirection: TextDirection.ltr,
               ),
             ),
             const Divider(),
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 32, right: 32, top: 12, bottom: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.changelan,
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  CupertinoSlidingSegmentedControl<Language>(
+                    groupValue: _language,
+                    children: {
+                      Language.en: Text(AppLocalizations.of(context)!.en),
+                      Language.fa: Text(AppLocalizations.of(context)!.fa),
+                    },
+                    onValueChanged: (value) => updateBaseLanguage(value!),
+                  )
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 32, top: 5),
               child: Row(
@@ -166,6 +201,8 @@ class MainScreen extends StatelessWidget {
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       hintText: AppLocalizations.of(context)!.email,
+                      hintStyle: texttheme.bodyMedium!
+                          .copyWith(color: Colors.grey.shade400),
                       prefixIcon: const Icon(CupertinoIcons.at),
                     ),
                   ),
@@ -178,6 +215,8 @@ class MainScreen extends StatelessWidget {
                       filled: true,
                       fillColor: Colors.white10,
                       hintText: AppLocalizations.of(context)!.password,
+                      hintStyle: texttheme.bodyMedium!
+                          .copyWith(color: Colors.grey.shade400),
                       prefixIcon: const Icon(CupertinoIcons.lock),
                     ),
                   ),
@@ -193,11 +232,8 @@ class MainScreen extends StatelessWidget {
                               const Color.fromARGB(255, 243, 86, 138),
                         ),
                         onPressed: () {},
-                        child: Text(
-                          AppLocalizations.of(context)!.save,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        )),
+                        child: Text(AppLocalizations.of(context)!.save,
+                            style: texttheme.bodyLarge)),
                   ),
                   const SizedBox(
                     height: 10,
@@ -209,5 +245,12 @@ class MainScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void updateBaseLanguage(Language language) {
+    widget.selectedLanguageChange(language);
+    setState(() {
+      _language = language;
+    });
   }
 }

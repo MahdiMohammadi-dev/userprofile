@@ -8,5 +8,8 @@
   "email":"Email",
   "password":"password",
   "personalInfo":"Personal Information",
-  "save":"Save"
+  "save":"Save",
+  "changelan":"Change Language",
+  "en":"English",
+  "fa":"Persian"
 }
